@@ -63,15 +63,17 @@ func main() {
 	}
 
 	go func() {
+		log.Printf("Starting HTTP server\n")
 		err := httpServer.ListenAndServe()
 		if err != nil {
-			log.Fatalf("error on port 80: %s\n", err)
+			log.Fatalf("error from HTTP server: %s\n", err)
 		}
 	}()
 
+	log.Printf("Starting HTTPS server\n")
 	err := httpsServer.ListenAndServeTLS("", "")
 	if err != nil {
-		log.Fatalf("error on port 443: %s\n", err)
+		log.Fatalf("error from HTTPS server: %s\n", err)
 	}
 }
 
