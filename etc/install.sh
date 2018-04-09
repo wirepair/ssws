@@ -24,6 +24,8 @@ sudo chmod 755 /lib/systemd/system/${BIN}.service
 cd .. && go build && sudo cp ${BIN} $FULL_PATH
 sudo chown $SERVICE -R $APP_PATH
 sudo setcap 'cap_net_bind_service=+ep' $FULL_PATH
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
 
 # start her up.
 sudo systemctl enable ${BIN}.service

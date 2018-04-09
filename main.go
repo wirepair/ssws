@@ -54,9 +54,6 @@ func main() {
 		Handler:      mux,
 	}
 
-	http.NewServeMux()
-	go log.Fatal(httpsServer.ListenAndServeTLS("", ""))
-
 	httpServer := &http.Server{
 		Addr:         ":80",
 		ReadTimeout:  10 * time.Second,
@@ -64,7 +61,9 @@ func main() {
 		IdleTimeout:  120 * time.Second,
 		Handler:      m.HTTPHandler(nil),
 	}
-	log.Fatal(httpServer.ListenAndServe())
+
+	go log.Fatal(httpServer.ListenAndServe())
+	log.Fatal(httpsServer.ListenAndServeTLS("", ""))
 }
 
 func addRoutes(mux *http.ServeMux) {
