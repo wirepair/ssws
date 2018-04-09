@@ -4,3 +4,12 @@ Which will create a service user, a service, allow it to run on port 80 and 443 
 
 It will redirect all GET/HEAD requests from 80 to 443 using the autocert handler. If you want to add custom handler funcs to the HTTPS service, 
 add them in the addRoutes function.
+
+## Install
+```
+go get github.com/wirepair/ssws
+cd $GOHOME/src/github.com/wirepair/ssws
+vi main.go // replace hostname with your hostname
+:q
+cd etc
+chmod +x install.sh && ./install.sh (will prompt for passwd)```
