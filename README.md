@@ -6,10 +6,11 @@ It will redirect all GET/HEAD requests from 80 to 443 using the autocert handler
 add them in the addRoutes function.
 
 ## Install
-```
+`
 go get github.com/wirepair/ssws
 cd $GOHOME/src/github.com/wirepair/ssws
 vi main.go // replace hostname with your hostname
 :q
 cd etc
-chmod +x install.sh && ./install.sh (will prompt for passwd)```
+chmod +x install.sh && ./install.sh (will prompt for passwd)
+`
