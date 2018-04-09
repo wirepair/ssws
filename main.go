@@ -62,8 +62,17 @@ func main() {
 		Handler:      m.HTTPHandler(nil),
 	}
 
-	go log.Fatal(httpServer.ListenAndServe())
-	log.Fatal(httpsServer.ListenAndServeTLS("", ""))
+	go func() {
+		err := httpServer.ListenAndServe()
+		if err != nil {
+			log.Fatalf("error on port 80: %s\n", err)
+		}
+	}()
+
+	err := httpsServer.ListenAndServeTLS("", "")
+	if err != nil {
+		log.Fatalf("error on port 443: %s\n", err)
+	}
 }
 
 func addRoutes(mux *http.ServeMux) {
